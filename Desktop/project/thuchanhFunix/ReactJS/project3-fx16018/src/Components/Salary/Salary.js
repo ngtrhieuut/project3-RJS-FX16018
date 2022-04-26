@@ -1,6 +1,6 @@
-import BreadcrumbbarSalary from './BreadcrumbDept';
+import BreadcrumbbarSalary from './BreadcrumbSalary';
 import {useSelector} from 'react-redux';
-import { addStaffSelector } from '../redux/selectors';
+import { addStaffSelector } from '../../redux/selectors';
 
 function Salary() {
 

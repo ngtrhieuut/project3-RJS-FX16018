@@ -1,24 +1,34 @@
 import { Card, CardBody, CardTitle, CardImg } from 'reactstrap';
 import BreadcrumbbarStaff from './Breadcrumb';
 import AddStaff from './AddStaff';
+import style from './closBtn.module.css';
 import {useSelector} from 'react-redux';
-import { addStaffSelector, searchStaffSelector } from '../redux/selectors';
+import { staffRemaining } from '../../redux/selectors';
 import { useDispatch } from 'react-redux'
-import { searchStaff } from '../redux/actions';
+import filterSlide from './filterSlide';
 import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { removeStaff } from './staffListSlide'
+
+
 
 function Staff() {
     
-    const staffList = useSelector(addStaffSelector);
-    const searchStaffshow = useSelector(searchStaffSelector);
+    const staffList = useSelector(staffRemaining);
 
     const [inputSearch, setInputSearch] = useState('')
 
     const dispatch = useDispatch();
 
     const handleSearch = () => {
-        dispatch(searchStaff(inputSearch))
+        dispatch(filterSlide.actions.searchFilterChange(inputSearch))
+    }
+
+    const handleDeleteStaff = (idStaff) => {
+        const parentElement = document.getElementById('parentElement');
+        const childElement = idStaff.target.parentElement.parentElement
+        parentElement.removeChild(childElement);
+        dispatch(removeStaff(idStaff.target.parentElement.parentElement.id))
     }
 
     return (
@@ -37,12 +47,14 @@ function Staff() {
                     color="secondary"
                     inverse
                 >
-                    <CardBody className='row'>
+                    <CardBody className='row' id='parentElement'>
                         {staffList.map(staff => (
 
-                            <Card className='col-6 col-md-4 col-lg-2 mb-2 p-2 staffview' key={staff.id}>
-                                    <Link to={`/staff/${staff.id}`} style={{textDecoration : 'none'}}>
-                                    <button type="button" className="closeBtn">X</button>
+                            <Card className='col-6 col-md-4 col-lg-2 mb-2 p-2 staffview' key={staff.id} id={staff.id}>
+                                <div className={style.containerBtn + " " + style.zoomShrink} onClick={e => handleDeleteStaff(e)}>
+                                    <div className={style.closeIcon + " " + style.zoomShrink}></div>
+                                </div>
+                                <Link to={`/staff/${staff.id}`} style={{textDecoration : 'none'}}>
                                     <CardImg
                                     alt={staff.name}
                                     src={staff.image}
@@ -58,7 +70,6 @@ function Staff() {
                                             </div>
                                         </CardTitle>
                                     </CardBody>
-
                                 </Link>                       
                             </Card>
                             

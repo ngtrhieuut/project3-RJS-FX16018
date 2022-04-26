@@ -5,11 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Staff from './Components/Staff';
-import Department from './Components/Department';
-import Salary from './Components/Salary';
-import NotFound from './Components/NotFound';
-import StaffInfomation from './Components/StaffInfomation';
+import Staff from './Components/Staff/Staff';
+import Department from './Components/Deepartment/Department';
+import Salary from './Components/Salary/Salary';
+import NotFound from './Components/NotFound/NotFound';
+import StaffInfomation from './Components/Staff/StaffInfomation';
 import store from './redux/store';
 import { Provider } from 'react-redux';
 

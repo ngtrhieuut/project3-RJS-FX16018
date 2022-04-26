@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardTitle } from 'reactstrap';
 import { useParams } from "react-router-dom";
 import {useSelector} from 'react-redux';
-import { addStaffSelector } from '../redux/selectors';
+import { addStaffSelector } from '../../redux/selectors';
 
 function StaffInfomation() {
     const params = useParams()
     const staffList = useSelector(addStaffSelector);
-    console.log(staffList)
     const staffInfo = staffList.find(staff => staff.id.toString() === params.staffId)
 
     return(
@@ -59,7 +58,7 @@ function StaffInfomation() {
                 <div className='col-12 col-md-8 col-lg-9' id='staffInfomation'>
                     <p><strong>Ngày sinh: </strong>{dateFormat(staffInfo?.doB, "dd/mm/yyyy")}</p>
                     <p><strong>Ngày vào công ty: </strong>{dateFormat(staffInfo?.startDate, "dd/mm/yyyy")}</p>
-                    <p><strong>Phòng ban: </strong>{staffInfo?.department.name}</p>
+                    <p><strong>Phòng ban: </strong>{staffInfo?.department}</p>
                     <p><strong>Số ngày nghỉ còn lại: </strong>{staffInfo?.annualLeave}</p>
                     <p><strong>Số ngày đã làm thêm: </strong>{staffInfo?.overTime}</p>
                 </div>

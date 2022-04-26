@@ -82,16 +82,6 @@
     position: relative;
 }
 
-.closeBtn {
-    position: absolute;
-    z-index: 10;
-    right: 3px;
-    border: 1px solid;
-    border-radius: 25px;
-    background-color: gray;
-    color: white;
-}
-
 .form-message {
     color: #f33a58;
     font-size: 1.2rem;

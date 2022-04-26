@@ -1,7 +1,7 @@
 import { Form, FormGroup, Label } from 'reactstrap';
 import { DEPARTMENTS } from './staffs';
-import { useDispatch, useSelector } from 'react-redux';
-import { addStaff } from '../redux/actions'
+import { useDispatch } from 'react-redux';
+import { addNewStaff } from './staffListSlide'
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 
@@ -16,7 +16,7 @@ function AddStaff() {
     const [inputSalaryScale, setInputSalaryScale] = useState('');
     const [inputAnualLeave, setInputAnualLeave] = useState('');
     const [inputOvertime, setInputOvertime] = useState('');
-    const [inputImage, setInputImage] = useState('/assets/images/alberto.png');
+    // const [inputImage, setInputImage] = useState('/assets/images/alberto.png');
 
     const [spanTagText, setSpanTagText] = useState('')
     const [spanTagDoB, setSpanTagDoB] = useState('')
@@ -34,7 +34,7 @@ function AddStaff() {
         ) {
             const handleAddStaff = () => {
                 dispatch(
-                    addStaff({
+                    addNewStaff({
                         id: uuidv4(),
                         name: inputName,
                         doB: inputBirth,
@@ -77,7 +77,7 @@ function AddStaff() {
     const handleSetSpanDoB = (event) => {
         setInputBirth(event.target.value);
 
-        if ([event.target.value] != 0) {
+        if ([event.target.value] !== 0) {
             setSpanTagDoB('');
         } else {
             setSpanTagDoB('Vui lòng nhập Ngày sinh');
@@ -87,7 +87,7 @@ function AddStaff() {
     const handleSetSpanStartDate = (event) => {
         
         
-        if ([event.target.value] != 0) {
+        if ([event.target.value] !== 0) {
             setSpanTagStartDate('');
         } else {
             setSpanTagStartDate('Vui lòng nhập Ngày vào công ty');
@@ -209,7 +209,6 @@ function AddStaff() {
                                     </Label>
                                     <input
                                         id='exampleimage'
-                                        onChange={e => setInputImage(e.target.value)}
                                         placeholder="/assets/images/alberto.png"
                                         type={'file'} />
                                 </FormGroup>
